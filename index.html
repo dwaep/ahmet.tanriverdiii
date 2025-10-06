@@ -95,6 +95,32 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
 #volumeSlider {width:0; transition: width 0.3s ease;}
 #audioControl:hover #volumeSlider {width:100px;}
 #volumeIcon {width:24px;height:24px;}
+
+/* Ziyaretçi sayacı */
+.visitor-counter {
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.4);
+  color: gold;
+  padding: 6px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  gap: 6px;
+  z-index: 9999;
+  transition: transform 0.2s;
+}
+.visitor-counter:hover {
+  transform: scale(1.1);
+}
+.eye-icon {
+  width: 20px;
+  height: 20px;
+}
 </style>
 </head>
 <body>
@@ -147,6 +173,14 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
 </div>
 
+<!-- Ziyaretçi sayacı -->
+<div class="visitor-counter">
+  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gold">
+    <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/>
+  </svg>
+  <span id="visitCount">100</span>
+</div>
+
 <script>
 const player = document.getElementById('player');
 const volumeSlider = document.getElementById('volumeSlider');
@@ -169,6 +203,14 @@ blurOverlay.addEventListener('click', () => {
     else { clearInterval(fadeInterval); }
   },30);
 });
+
+// Ziyaretçi sayacı
+const countEl = document.getElementById("visitCount");
+fetch("https://api.countapi.xyz/update/ahmettanriverdi/visits/?amount=1")
+  .then(res => res.json())
+  .then(data => {
+    countEl.innerText = 100 + data.value;
+  });
 </script>
 </body>
 </html>
