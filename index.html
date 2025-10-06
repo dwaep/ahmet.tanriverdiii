@@ -1,36 +1,62 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ahmet Tanriverdi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#0b0b0b;--card:rgba(255,255,255,0.06);--accent:#ff4757}
-    *{box-sizing:border-box;transition:all 0.3s ease}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;overflow-x:hidden}
-    body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
-    .wrap{width:100%;max-width:760px;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.6);animation:fadeIn 1.2s ease}
-    @keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-    .hero{position:relative;padding:28px 22px 18px 22px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
-    .avatar{width:96px;height:96px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,0.06);transform:scale(0);animation:avatarPop 0.8s forwards}
-    @keyframes avatarPop{to{transform:scale(1)}}
-    .title{font-weight:800;font-size:22px;margin:0;opacity:0;animation:fadeUp 1s 0.5s forwards}
-    .sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px;opacity:0;animation:fadeUp 1s 0.7s forwards}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-    .controls{display:flex;gap:8px;align-items:center;margin-top:10px;opacity:0;animation:fadeUp 1s 0.9s forwards}
-    .playBtn{background:var(--accent);border:none;padding:10px 14px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;transform:scale(1);transition:transform 0.2s ease}
-    .playBtn:hover{transform:scale(1.1)}
-    .links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.03);animation:fadeUp 1s 1.1s forwards}
-    .link{display:block;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
-    .link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1)}
-    .small{font-size:13px;color:rgba(255,255,255,0.65);text-align:center;padding:12px;opacity:0;animation:fadeUp 1s 1.3s forwards}
-    .bg-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(8px) brightness(0.45);transform:scale(1.05);z-index:0;animation:moveBG 20s linear infinite}
-    .overlay{position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.15));z-index:1}
-    .content{position:relative;z-index:2}
-    @keyframes moveBG{0%{transform:scale(1) translateX(0)}50%{transform:scale(1.05) translateX(-10px)}100%{transform:scale(1) translateX(0)}}
-    @media (max-width:420px){.hero{grid-template-columns:72px 1fr}.avatar{width:72px;height:72px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ahmet Tanriverdi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0b;--card:rgba(255,255,255,0.06);--accent:#ff4757}
+*{box-sizing:border-box;transition:all 0.3s ease}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;overflow-x:hidden}
+body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
+.wrap{width:100%;max-width:760px;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.6);animation:fadeIn 1.2s ease}
+@keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+.hero{position:relative;padding:28px 22px 18px 22px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
+.avatar{width:96px;height:96px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,0.06);transform:scale(0);animation:avatarPop 0.8s forwards}
+@keyframes avatarPop{to{transform:scale(1)}}
+.title{font-weight:800;font-size:22px;margin:0;opacity:0;animation:fadeUp 1s 0.5s forwards}
+.sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px;opacity:0;animation:fadeUp 1s 0.7s forwards}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.controls{display:flex;gap:8px;align-items:center;margin-top:10px;opacity:0;animation:fadeUp 1s 0.9s forwards}
+.links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.03);animation:fadeUp 1s 1.1s forwards}
+.link{display:block;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
+.link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1)}
+.small{font-size:13px;color:rgba(255,255,255,0.65);text-align:center;padding:12px;opacity:0;animation:fadeUp 1s 1.3s forwards}
+.bg-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(8px) brightness(0.45);transform:scale(1.05);z-index:0;animation:moveBG 20s linear infinite}
+.overlay{position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.15));z-index:1}
+.content{position:relative;z-index:2}
+@keyframes moveBG{0%{transform:scale(1) translateX(0)}50%{transform:scale(1.05) translateX(-10px)}100%{transform:scale(1) translateX(0)}}
+@media (max-width:420px){.hero{grid-template-columns:72px 1fr}.avatar{width:72px;height:72px}}
+
+#audioControl {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index:10;
+}
+
+#volumeSlider {
+  width: 0px;
+  transition: width 0.3s ease;
+}
+
+#audioControl:hover #volumeSlider {
+  width: 100px;
+}
+
+#volumeIcon {
+  width: 24px;
+  height: 24px;
+}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -43,7 +69,6 @@
           <h1 class="title" id="name">Ahmet Tanriverdi</h1>
           <div class="sub" id="desc">Web geliştiricisi | Teknoloji meraklısı | Müzik tutkunu</div>
           <div class="controls">
-            <button class="playBtn" id="play">▶ Şarkıyı Çal</button>
             <a href="#links" class="small" style="text-decoration:none;color:inherit">Aşağı kaydır</a>
           </div>
         </div>
@@ -58,20 +83,23 @@
         <div class="small">© 2025 — Ahmet Tanriverdi</div>
       </div>
       <!-- Müzik dosyası -->
-      <audio id="player" src="assets/amo-aller-amos.mp3" preload="none"></audio>
+      <audio id="player" src="assets/amo-aller-amos.mp3" preload="auto" autoplay loop></audio>
     </div>
   </div>
+
+  <!-- Ses kontrol -->
+  <div id="audioControl">
+    <img src="https://img.icons8.com/ios-glyphs/30/ffffff/speaker.png" id="volumeIcon"/>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+  </div>
+
   <script>
     const player = document.getElementById('player');
-    const btn = document.getElementById('play');
-    let playing = false;
-    btn.addEventListener('click', async ()=>{
-      if(!playing){
-        try{ await player.play(); playing=true; btn.textContent='⏸ Durdur'; }
-        catch(e){ player.play(); playing=true; btn.textContent='⏸ Durdur'; }
-      } else { player.pause(); playing=false; btn.textContent='▶ Şarkıyı Çal'; }
+    const volumeSlider = document.getElementById('volumeSlider');
+
+    volumeSlider.addEventListener('input', () => {
+      player.volume = volumeSlider.value;
     });
   </script>
 </body>
 </html>
-
