@@ -46,6 +46,12 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   cursor:pointer;
   text-align:center;
   transition: opacity 1.5s ease;
+
+  /* Mobilde mavi ışığı kapatma ve dokunmayı temizle */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 /* İçerik */
