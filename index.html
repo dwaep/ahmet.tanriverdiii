@@ -10,6 +10,7 @@
 *{box-sizing:border-box;transition:all 0.3s ease}
 html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;overflow-x:hidden}
 body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
+
 .wrap{width:100%;max-width:760px;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.6);animation:fadeIn 1.2s ease}
 @keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
 .hero{position:relative;padding:28px 22px 18px 22px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
@@ -56,50 +57,78 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   width: 24px;
   height: 24px;
 }
+
+/* Blur overlay başlangıçta açık */
+#blurOverlay {
+  position: fixed;
+  inset:0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  text-align:center;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div id="bg" class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80')"></div>
-    <div class="overlay"></div>
-    <div class="content">
-      <div class="hero">
-        <div class="avatar" id="avatar" style="background-image:url('assets/ahmet.png')"></div>
-        <div>
-          <h1 class="title" id="name">Ahmet Tanriverdi</h1>
-          <div class="sub" id="desc">Web geliştiricisi | Teknoloji meraklısı | Müzik tutkunu</div>
-          <div class="controls">
-            <a href="#links" class="small" style="text-decoration:none;color:inherit">Aşağı kaydır</a>
-          </div>
+<div class="wrap">
+  <div id="bg" class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80')"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="hero">
+      <div class="avatar" id="avatar" style="background-image:url('assets/ahmet.png')"></div>
+      <div>
+        <h1 class="title" id="name">Ahmet Tanriverdi</h1>
+        <div class="sub" id="desc">Web geliştiricisi | Teknoloji meraklısı | Müzik tutkunu</div>
+        <div class="controls">
+          <a href="#links" class="small" style="text-decoration:none;color:inherit">Aşağı kaydır</a>
         </div>
       </div>
-      <div class="links" id="links">
-        <a class="link" href="https://open.spotify.com/" target="_blank">Spotify</a>
-        <a class="link" href="https://youtube.com/" target="_blank">YouTube</a>
-        <a class="link" href="https://soundcloud.com/" target="_blank">SoundCloud</a>
-        <a class="link" href="mailto:mail@example.com">İletişim</a>
-      </div>
-      <div style="padding:18px;text-align:center">
-        <div class="small">© 2025 — Ahmet Tanriverdi</div>
-      </div>
-      <!-- Müzik dosyası -->
-      <audio id="player" src="assets/amo-aller-amos.mp3" preload="auto" autoplay loop></audio>
     </div>
+    <div class="links" id="links">
+      <a class="link" href="https://open.spotify.com/" target="_blank">Spotify</a>
+      <a class="link" href="https://youtube.com/" target="_blank">YouTube</a>
+      <a class="link" href="https://soundcloud.com/" target="_blank">SoundCloud</a>
+      <a class="link" href="mailto:mail@example.com">İletişim</a>
+    </div>
+    <div style="padding:18px;text-align:center">
+      <div class="small">© 2025 — Ahmet Tanriverdi</div>
+    </div>
+    <!-- Müzik -->
+    <audio id="player" src="assets/amo-aller-amos.mp3" preload="auto" loop></audio>
   </div>
+</div>
 
-  <!-- Ses kontrol -->
-  <div id="audioControl">
-    <img src="https://img.icons8.com/ios-glyphs/30/ffffff/speaker.png" id="volumeIcon"/>
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
-  </div>
+<!-- Ses kontrol -->
+<div id="audioControl">
+  <img src="https://img.icons8.com/ios-glyphs/30/ffffff/speaker.png" id="volumeIcon"/>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+</div>
 
-  <script>
-    const player = document.getElementById('player');
-    const volumeSlider = document.getElementById('volumeSlider');
+<!-- Blur overlay -->
+<div id="blurOverlay">Ekrana tıkla, Paşam</div>
 
-    volumeSlider.addEventListener('input', () => {
-      player.volume = volumeSlider.value;
-    });
-  </script>
+<script>
+const player = document.getElementById('player');
+const volumeSlider = document.getElementById('volumeSlider');
+const blurOverlay = document.getElementById('blurOverlay');
+
+// Ses slider
+volumeSlider.addEventListener('input', () => {
+  player.volume = volumeSlider.value;
+});
+
+// Blur overlay tıklama
+blurOverlay.addEventListener('click', () => {
+  blurOverlay.style.display = 'none'; // blur kaybolur
+  player.play(); // müzik başlar
+});
+</script>
 </body>
 </html>
