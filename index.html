@@ -46,8 +46,6 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   cursor:pointer;
   text-align:center;
   transition: opacity 1.5s ease;
-
-  /* Mobilde mavi ışığı kapatma ve dokunmayı temizle */
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -ms-touch-action: manipulation;
@@ -182,42 +180,4 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
 <!-- Ziyaretçi sayacı -->
 <div class="visitor-counter">
   <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gold">
-    <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/>
-  </svg>
-  <span id="visitCount">100</span>
-</div>
-
-<script>
-const player = document.getElementById('player');
-const volumeSlider = document.getElementById('volumeSlider');
-const blurOverlay = document.getElementById('blurOverlay');
-
-// Ses slider
-volumeSlider.addEventListener('input', () => { player.volume = volumeSlider.value; });
-
-// Blur overlay tıklama
-blurOverlay.addEventListener('click', () => {
-  blurOverlay.style.opacity='0';
-  setTimeout(()=>{blurOverlay.style.display='none';},1500);
-
-  // Müzik fade-in
-  player.volume = 0;
-  player.play();
-  let vol = 0;
-  const fadeInterval = setInterval(()=>{
-    if(vol<1){ vol+=0.02; if(vol>1) vol=1; player.volume=vol; } 
-    else { clearInterval(fadeInterval); }
-  },30);
-});
-
-// Ziyaretçi sayacı (her cihazdan artar)
-const countEl = document.getElementById("visitCount");
-fetch("https://api.countapi.xyz/hit/ahmettanriverdi-global/visits")
-  .then(res => res.json())
-  .then(data => {
-    countEl.innerText = 100 + data.value;
-  })
-  .catch(err => { console.log("Sayaç API hatası:", err); });
-</script>
-</body>
-</html>
+    <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 
