@@ -57,18 +57,24 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   position:relative;
   background:rgba(255,255,255,0.05);
   box-shadow:0 6px 30px rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px); /* 💫 Panel bulanıklığı eklendi */
+  backdrop-filter: blur(8px);
 }
 .hero{position:relative;padding:28px 22px 18px 22px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;animation:fadeUp 1s ease forwards;opacity:0;transform:translateY(20px);}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 .avatar{width:96px;height:96px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,0.06);}
 .title{font-weight:800;font-size:22px;margin:0}
-.sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px}
+.sub{font-size:14px;color:#800000;margin-top:6px} /* Rozetler bordo */
 .controls{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:10px}
+.controls .small{font-size:13px;color:#001f6b;font-weight:600;} /* Mari yazısı lacivert */
+
+/* Linkler */
 .links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.03)}
-.link{display:block;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
+.link{display:flex;align-items:center;gap:10px;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
 .link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1)}
-.small{font-size:13px;color:rgba(255,255,255,0.65)}
+.link img{width:22px;height:22px;}
+
+/* Alt yazı */
+.footer-text{font-size:13px;color:#FFD700;font-weight:600;} /* Gold */
 
 @media (max-width:420px){.hero{grid-template-columns:72px 1fr}.avatar{width:72px;height:72px}}
 
@@ -113,13 +119,22 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   </div>
 
   <div class="links" id="links">
-    <a class="link" href="https://instagram.com/ahmet.tanriverdiii" target="_blank">📷 Instagram — ahmet.tanriverdiii</a>
-    <a class="link" href="https://instagram.com/ahmet.tn7" target="_blank">📷 Instagram — ahmet.tn7</a>
-    <a class="link" href="https://x.com/AhmetUt65114282" target="_blank">𝕏 X — couple06</a>
+    <a class="link" href="https://instagram.com/ahmet.tanriverdiii" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/> ahmet.tanriverdiii
+    </a>
+    <a class="link" href="https://instagram.com/ahmet.tn7" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/> ahmet.tn7
+    </a>
+    <a class="link" href="https://x.com/AhmetUt65114282" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx.png"/> couple06
+    </a>
+    <a class="link" href="https://open.spotify.com/user/3ctawmw87ddsl1kj74agvldaa" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/spotify.png"/> Spotify
+    </a>
   </div>
 
   <div style="padding:18px;text-align:center">
-    <div class="small">© 2025 — Ahmet Tanriverdi</div>
+    <div class="footer-text">© 2025 — Ahmet Tanriverdi</div>
   </div>
 
   <!-- Müzik -->
