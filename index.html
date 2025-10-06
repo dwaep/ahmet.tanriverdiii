@@ -1,147 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ahmet Tanriverdi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0b0b0b;--card:rgba(255,255,255,0.06);--accent:#ff4757}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;overflow-x:hidden}
-body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ahmet.tanriverdiii</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Arka plan resmi tam ekran ve hareketli */
-.bg-img{
-  position: fixed;
-  inset:0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index:0;
-  animation:moveBG 20s linear infinite;
-}
-@keyframes moveBG{
-  0%{transform:scale(1) translateX(0)}
-  50%{transform:scale(1.05) translateX(-10px)}
-  100%{transform:scale(1) translateX(0)}
-}
+    body {
+      font-family: "Poppins", sans-serif;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
 
-/* Blur overlay */
-#blurOverlay {
-  position: fixed;
-  inset:0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px);
-  z-index: 20;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  font-weight:700;
-  color:#fff;
-  cursor:pointer;
-  text-align:center;
-  transition: opacity 1.5s ease;
-}
+    /* --- Arka Plan --- */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/ahmet2.png') no-repeat center center/cover;
+      animation: moveBackground 20s ease-in-out infinite;
+      z-index: -1;
+    }
 
-/* İçerik */
-.wrap{width:100%;max-width:760px;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.6);}
-.hero{position:relative;padding:28px 22px 18px 22px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;animation:fadeUp 1s ease forwards;opacity:0;transform:translateY(20px);}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.avatar{width:96px;height:96px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,0.06);}
-.title{font-weight:800;font-size:22px;margin:0}
-.sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px}
-.controls{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:10px}
-.links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.03)}
-.link{display:block;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
-.link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1)}
-.small{font-size:13px;color:rgba(255,255,255,0.65)}
+    @keyframes moveBackground {
+      0% {
+        transform: scale(1.05) translate(0, 0);
+      }
+      25% {
+        transform: scale(1.05) translate(-20px, 15px);
+      }
+      50% {
+        transform: scale(1.05) translate(20px, -10px);
+      }
+      75% {
+        transform: scale(1.05) translate(-15px, -20px);
+      }
+      100% {
+        transform: scale(1.05) translate(0, 0);
+      }
+    }
 
-@media (max-width:420px){.hero{grid-template-columns:72px 1fr}.avatar{width:72px;height:72px}}
+    /* --- Blur Katmanı --- */
+    .blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 10;
+      transition: opacity 1.5s ease, backdrop-filter 1.5s ease;
+      cursor: pointer;
+    }
 
-/* Ses kontrol */
-#audioControl {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0,0,0,0.4);
-  padding: 6px 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  z-index:10;
-}
-#volumeSlider {width:0; transition: width 0.3s ease;}
-#audioControl:hover #volumeSlider {width:100px;}
-#volumeIcon {width:24px;height:24px;}
-</style>
+    .blur-overlay.hidden {
+      opacity: 0;
+      backdrop-filter: blur(0);
+      pointer-events: none;
+    }
+
+    /* --- Profil ve Yazılar --- */
+    .content {
+      position: relative;
+      top: 35%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .badges {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* --- Ses simgesi --- */
+    #volume-control {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 5;
+    }
+
+    #volume-icon {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    #volume-icon:hover + #volume-control,
+    #volume-control:hover {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
-<!-- Arka plan -->
-<div id="bg" class="bg-img" style="background-image:url('assets/ahmet2.png')"></div>
+  <div class="background"></div>
 
-<!-- Blur overlay -->
-<div id="blurOverlay">Ekrana tıkla, Paşam</div>
+  <div class="blur-overlay" id="overlay">Ekrana tıkla paşam 😎</div>
 
-<div class="wrap">
-  <div class="hero">
-    <div class="avatar" id="avatar" style="background-image:url('assets/ahmet.png')"></div>
-    <div>
-      <h1 class="title" id="name">Ahmet Tanriverdi</h1>
-      <div class="sub" id="desc">
-        LOL: 102 saat / Roblox: 207 saat / Counter: 267 saat
-      </div>
-      <div class="controls">
-        <span class="small">Ben olabilirmisin, Mari??</span>
-      </div>
+  <div class="content">
+    <h1>ahmet.tanriverdiii</h1>
+    <div class="badges">
+      <div class="badge">LoL'de 102 saat</div>
+      <div class="badge">Roblox'ta 207 saat</div>
+      <div class="badge">Counter'da 267 saat</div>
     </div>
-  </div>
-  <div class="links" id="links">
-    <a class="link" href="https://open.spotify.com/" target="_blank">Spotify</a>
-    <a class="link" href="https://youtube.com/" target="_blank">YouTube</a>
-    <a class="link" href="https://soundcloud.com/" target="_blank">SoundCloud</a>
-    <a class="link" href="mailto:mail@example.com">İletişim</a>
-  </div>
-  <div style="padding:18px;text-align:center">
-    <div class="small">© 2025 — Ahmet Tanriverdi</div>
+    <div class="footer-text">Ben olabilirim mi Mari ?? 💫</div>
   </div>
 
-  <!-- Müzik -->
-  <audio id="player" src="assets/amo-aller-amos.mp3" preload="auto" loop></audio>
-</div>
+  <img id="volume-icon" src="https://cdn-icons-png.flaticon.com/512/727/727240.png" alt="Ses">
+  <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1">
 
-<!-- Ses kontrol -->
-<div id="audioControl">
-  <img src="https://img.icons8.com/ios-glyphs/30/ffffff/speaker.png" id="volumeIcon"/>
-  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
-</div>
+  <audio id="background-music" loop>
+    <source src="assets/music.mp3" type="audio/mp3">
+  </audio>
 
-<script>
-const player = document.getElementById('player');
-const volumeSlider = document.getElementById('volumeSlider');
-const blurOverlay = document.getElementById('blurOverlay');
+  <script>
+    const overlay = document.getElementById('overlay');
+    const music = document.getElementById('background-music');
+    const volumeControl = document.getElementById('volume-control');
 
-// Ses slider
-volumeSlider.addEventListener('input', () => { player.volume = volumeSlider.value; });
+    overlay.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      music.volume = 0;
+      music.play();
 
-// Blur overlay tıklama
-blurOverlay.addEventListener('click', () => {
-  blurOverlay.style.opacity='0';
-  setTimeout(()=>{blurOverlay.style.display='none';},1500);
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        if (vol < 1) {
+          vol += 0.02;
+          music.volume = vol;
+        } else {
+          clearInterval(fadeIn);
+        }
+      }, 100);
 
-  // Müzik fade-in
-  player.volume = 0;
-  player.play();
-  let vol = 0;
-  const fadeInterval = setInterval(()=>{
-    if(vol<1){ vol+=0.02; if(vol>1) vol=1; player.volume=vol; } 
-    else { clearInterval(fadeInterval); }
-  },30);
-});
-</script>
+    });
+
+    volumeControl.addEventListener('input', (e) => {
+      music.volume = e.target.value;
+    });
+  </script>
 </body>
 </html>
