@@ -73,6 +73,7 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
   color:#fff;
   cursor:pointer;
   text-align:center;
+  transition: opacity 1.5s ease;
 }
 </style>
 </head>
@@ -126,8 +127,24 @@ volumeSlider.addEventListener('input', () => {
 
 // Blur overlay tıklama
 blurOverlay.addEventListener('click', () => {
-  blurOverlay.style.display = 'none'; // blur kaybolur
-  player.play(); // müzik başlar
+  blurOverlay.style.opacity = '0'; // blur fade-out
+  setTimeout(() => {
+    blurOverlay.style.display = 'none';
+  }, 1500);
+
+  // Müzik fade-in
+  player.volume = 0;
+  player.play();
+  let vol = 0;
+  const fadeInterval = setInterval(() => {
+    if(vol < 1){
+      vol += 0.02; // 1.5 saniye içinde full ses
+      if(vol > 1) vol = 1;
+      player.volume = vol;
+    } else {
+      clearInterval(fadeInterval);
+    }
+  }, 30);
 });
 </script>
 </body>
