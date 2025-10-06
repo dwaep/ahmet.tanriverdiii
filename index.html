@@ -19,11 +19,11 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
 .title{font-weight:800;font-size:22px;margin:0;opacity:0;animation:fadeUp 1s 0.5s forwards}
 .sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px;opacity:0;animation:fadeUp 1s 0.7s forwards}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.controls{display:flex;gap:8px;align-items:center;margin-top:10px;opacity:0;animation:fadeUp 1s 0.9s forwards}
+.controls{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:10px;opacity:0;animation:fadeUp 1s 0.9s forwards}
 .links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.03);animation:fadeUp 1s 1.1s forwards}
 .link{display:block;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
 .link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1)}
-.small{font-size:13px;color:rgba(255,255,255,0.65);text-align:center;padding:12px;opacity:0;animation:fadeUp 1s 1.3s forwards}
+.small{font-size:13px;color:rgba(255,255,255,0.65)}
 .bg-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(8px) brightness(0.45);transform:scale(1.05);z-index:0;animation:moveBG 20s linear infinite}
 .overlay{position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.15));z-index:1}
 .content{position:relative;z-index:2}
@@ -86,9 +86,11 @@ body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-con
       <div class="avatar" id="avatar" style="background-image:url('assets/ahmet.png')"></div>
       <div>
         <h1 class="title" id="name">Ahmet Tanriverdi</h1>
-        <div class="sub" id="desc">Web geliştiricisi | Teknoloji meraklısı | Müzik tutkunu</div>
+        <div class="sub" id="desc">
+          LOL: 102 saat / Roblox: 207 saat / Counter: 267 saat
+        </div>
         <div class="controls">
-          <a href="#links" class="small" style="text-decoration:none;color:inherit">Aşağı kaydır</a>
+          <span class="small">Ben olabilirmisin, Mari??</span>
         </div>
       </div>
     </div>
@@ -138,7 +140,7 @@ blurOverlay.addEventListener('click', () => {
   let vol = 0;
   const fadeInterval = setInterval(() => {
     if(vol < 1){
-      vol += 0.02; // 1.5 saniye içinde full ses
+      vol += 0.02;
       if(vol > 1) vol = 1;
       player.volume = vol;
     } else {
