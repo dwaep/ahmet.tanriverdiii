@@ -57,7 +57,7 @@
       <div style="padding:18px;text-align:center">
         <div class="small">© 2025 — Ahmet Tanriverdi</div>
       </div>
-      <!-- Audio element: Amo aller Amos müziği eklenecek -->
+      <!-- Müzik dosyası -->
       <audio id="player" src="assets/amo-aller-amos.mp3" preload="none"></audio>
     </div>
   </div>
@@ -71,12 +71,6 @@
         catch(e){ player.play(); playing=true; btn.textContent='⏸ Durdur'; }
       } else { player.pause(); playing=false; btn.textContent='▶ Şarkıyı Çal'; }
     });
-    // Kolay özelleştirme için URL parametreleri
-    const params = new URLSearchParams(location.search);
-    if(params.get('bg')) document.getElementById('bg').style.backgroundImage = `url('${params.get('bg')}')`;
-    if(params.get('avatar')) document.getElementById('avatar').style.backgroundImage = `url('${params.get('avatar')}')`;
-    if(params.get('name')) document.getElementById('name').textContent = params.get('name');
-    if(params.get('desc')) document.getElementById('desc').textContent = params.get('desc');
   </script>
 </body>
 </html>
