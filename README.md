@@ -1,2 +1,0 @@
-# ahmet.tanriverdiii
-bio
