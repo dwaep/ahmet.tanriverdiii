@@ -1,162 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ahmet</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent; /* 👈 Mavi tıklama efekti kapalı */
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ahmet Tanriverdi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0b;--card:rgba(255,255,255,0.06);--accent:#ff4757}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;overflow-x:hidden}
+body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
 
-    body {
-      height: 100vh;
-      overflow: hidden;
-      background: radial-gradient(circle at center, #000000, #1a0000);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-    }
+/* Arka plan */
+.bg-img{position: fixed; inset:0; width:100%; height:100%; background-size: cover; background-position:center; z-index:0; animation:moveBG 20s linear infinite;}
+@keyframes moveBG{0%{transform:scale(1) translate(0,0)}25%{transform:scale(1.05) translate(-10px,10px)}50%{transform:scale(1.05) translate(10px,-10px)}75%{transform:scale(1.05) translate(-10px,-10px)}100%{transform:scale(1) translate(0,0)}}
 
-    #ahmet {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      background: url('ahmet2.png') center/contain no-repeat;
-      animation: float 8s infinite ease-in-out;
-      z-index: 2;
-    }
+/* Blur overlay */
+#blurOverlay{position:fixed; inset:0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index:20; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#fff; cursor:pointer; text-align:center; transition: opacity 1.5s ease;}
 
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -20px) scale(1.05); }
-      50% { transform: translate(0, -30px) scale(1.1); }
-      75% { transform: translate(-30px, -20px) scale(1.05); }
-      100% { transform: translate(0, 0) scale(1); }
-    }
+/* İçerik */
+.wrap{width:100%; max-width:760px; border-radius:18px; overflow:hidden; position:relative; background:rgba(255,255,255,0.05); box-shadow:0 6px 30px rgba(0,0,0,0.6); backdrop-filter: blur(8px);}
+.hero{position:relative; padding:28px 22px 18px 22px; display:grid; grid-template-columns:96px 1fr; gap:18px; align-items:center; animation:fadeUp 1s ease forwards; opacity:0; transform:translateY(20px);}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.avatar{width:96px;height:96px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,0.06);}
+.title{font-weight:800;font-size:22px;margin:0}
+.sub{font-size:14px;color:#800000;margin-top:6px} /* Rozetler bordo */
+.controls{display:flex; flex-direction:column; gap:6px; align-items:flex-start; margin-top:10px;}
+.controls .small{font-size:13px;color:#001f6b;font-weight:600;} /* Mari yazısı lacivert */
 
-    .panel {
-      position: relative;
-      z-index: 3;
-      backdrop-filter: blur(10px);
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      padding: 25px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-    }
+/* Linkler */
+.links{display:flex; flex-direction:column; padding:18px; border-top:1px solid rgba(255,255,255,0.03);}
+.link{display:flex; align-items:center; gap:10px; text-decoration:none; padding:14px 16px; border-radius:12px; margin:8px 0; background:var(--card); color:#fff; font-weight:600; transition:transform 0.2s, background 0.2s;}
+.link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1);}
+.link img{width:22px;height:22px;}
 
-    .link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: 0.3s;
-    }
+/* Alt yazı */
+.footer-text{font-size:13px;color:#FFD700;font-weight:600;} /* Gold */
 
-    .link:hover {
-      transform: scale(1.05);
-    }
+/* Ses kontrol */
+#audioControl{position:fixed; top:20px; left:20px; display:flex; align-items:center; gap:8px; background: rgba(0,0,0,0.4); padding:6px 10px; border-radius:12px; cursor:pointer; z-index:10;}
+#volumeSlider{width:0; transition: width 0.3s ease;}
+#audioControl:hover #volumeSlider{width:100px;}
+#volumeIcon{width:24px;height:24px;}
 
-    .link img {
-      width: 22px;
-      height: 22px;
-    }
-
-    .rozet {
-      font-weight: bold;
-      font-size: 1.3rem;
-      color: #001f5f; /* Lacivert */
-    }
-
-    footer {
-      position: absolute;
-      bottom: 10px;
-      font-size: 0.9rem;
-      color: gold;
-      opacity: 0.9;
-    }
-
-    .counter-box {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      color: gold;
-      box-shadow: 0 0 10px rgba(255,215,0,0.3);
-    }
-
-    .counter-box img {
-      width: 18px;
-      height: 18px;
-    }
-  </style>
+/* Ziyaretçi sayacı */
+.visitor-counter{position:fixed; bottom:10px; right:15px; backdrop-filter: blur(6px); background: rgba(0,0,0,0.4); color: gold; padding:6px 12px; border-radius:12px; display:flex; align-items:center; font-family:'Inter',sans-serif; font-size:15px; gap:6px; z-index:9999;}
+.eye-icon{width:20px;height:20px;}
+</style>
 </head>
 <body>
-  <div id="ahmet"></div>
+<!-- Arka plan -->
+<div id="bg" class="bg-img" style="background-image:url('assets/ahmet2.png')"></div>
 
-  <div class="panel" id="panel">
-    <div class="rozet">Sen Ben Olabilirmişim Mari</div>
+<!-- Blur overlay -->
+<div id="blurOverlay">Ekrana tıkla, Paşam</div>
 
+<div class="wrap">
+  <div class="hero">
+    <div class="avatar" id="avatar" style="background-image:url('assets/ahmet.png')"></div>
+    <div>
+      <h1 class="title" id="name">Ahmet Tanriverdi</h1>
+      <div class="sub" id="desc">
+        LOL: 102 saat / Roblox: 207 saat / Counter: 267 saat
+      </div>
+      <div class="controls">
+        <span class="small">Ben olabilirmisin, Mari??</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="links" id="links">
     <a class="link" href="https://instagram.com/ahmet.tanriverdiii" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"> ahmet.tanriverdiii
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/> ahmet.tanriverdiii
     </a>
-
     <a class="link" href="https://instagram.com/ahmet.tn7" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"> ahmet.tn7
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"/> ahmet.tn7
     </a>
-
     <a class="link" href="https://x.com/AhmetUt65114282" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"> couple06
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx.png"/> couple06
     </a>
-
     <a class="link" href="https://open.spotify.com/user/3ctawmw87ddsl1kj74agvldaa" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png"> Spotify
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/spotify.png"/> Spotify
     </a>
   </div>
 
-  <footer>© 2025 Ahmet</footer>
-
-  <div class="counter-box">
-    <img src="https://cdn-icons-png.flaticon.com/512/159/159604.png">
-    <span id="counter">100</span>
+  <div style="padding:18px;text-align:center">
+    <div class="footer-text">© 2025 — Ahmet Tanriverdi</div>
   </div>
 
-  <script>
-    let count = localStorage.getItem('siteVisits');
-    if (!count) {
-      count = 100;
-    }
+  <!-- Müzik -->
+  <audio id="player" src="assets/amo-aller-amos.mp3" preload="auto" loop></audio>
+</div>
 
-    const lastVisit = localStorage.getItem('lastVisit');
-    const now = Date.now();
+<!-- Ses kontrol -->
+<div id="audioControl">
+  <img src="https://img.icons8.com/ios-glyphs/30/ffffff/speaker.png" id="volumeIcon"/>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+</div>
 
-    if (!lastVisit || now - lastVisit > 30 * 60 * 1000) {
-      count++;
-      localStorage.setItem('siteVisits', count);
-      localStorage.setItem('lastVisit', now);
-    }
+<!-- Ziyaretçi sayacı -->
+<div class="visitor-counter">
+  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gold">
+    <path d="M12 5c-7.633 0-12 7-12 7s4.367 7 12 7 12-7 12-7-4.367-7-12-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5z"/>
+    <circle cx="12" cy="12" r="2.5"/>
+  </svg>
+  <span id="visitCount">100</span>
+</div>
 
-    document.getElementById('counter').textContent = count;
-  </script>
+<script>
+const player = document.getElementById('player');
+const volumeSlider = document.getElementById('volumeSlider');
+const blurOverlay = document.getElementById('blurOverlay');
+const countEl = document.getElementById("visitCount");
+
+// Ses slider
+volumeSlider.addEventListener('input', () => { player.volume = volumeSlider.value; });
+
+// Blur overlay tıklama
+blurOverlay.addEventListener('click', () => {
+  blurOverlay.style.opacity='0';
+  setTimeout(()=>{blurOverlay.style.display='none';},1500);
+
+  // Müzik fade-in
+  player.volume = 0;
+  player.play();
+  let vol = 0;
+  const fadeInterval = setInterval(()=>{
+    if(vol<1){ vol+=0.02; if(vol>1) vol=1; player.volume=vol; } 
+    else { clearInterval(fadeInterval); }
+  },30);
+
+  // CountAPI ziyaretçi sayısı
+  fetch("https://api.countapi.xyz/hit/ahmettanriverdi-global/visits")
+    .then(res => res.json())
+    .then(data => { 
+      countEl.innerText = 100 + data.value; 
+    })
+    .catch(err => console.log("Sayaç API hatası:", err));
+});
+</script>
 </body>
 </html>
