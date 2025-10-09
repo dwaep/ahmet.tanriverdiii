@@ -6,47 +6,37 @@
 <title>Ahmet Tanriverdi</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0b0b0b;
-  --card:rgba(255,255,255,0.06);
-  --accent:#ff4757;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{
-  height:100%;
-  font-family:'Inter',system-ui;
-  overflow-x:hidden;
-  background:var(--bg);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-}
+:root{--bg:#0b0b0b;--card:rgba(255,255,255,0.06);--accent:#ff4757}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;overflow-x:hidden}
+body{background:var(--bg);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
 
-/* Arka plan */
+/* Arka plan resmi tam ekran ve hareketli */
 .bg-img{
-  position:fixed;
+  position: fixed;
   inset:0;
-  background:url('assets/ahmet2.png') center/cover no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
   z-index:0;
-  animation:moveBG 20s ease-in-out infinite alternate;
+  animation:moveBG 20s linear infinite;
 }
 @keyframes moveBG{
-  0%{transform:scale(1) translate(0,0)}
-  25%{transform:scale(1.03) translate(10px,-5px)}
-  50%{transform:scale(1.05) translate(-10px,10px)}
-  75%{transform:scale(1.03) translate(5px,10px)}
-  100%{transform:scale(1) translate(0,0)}
+  0%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(10px,-10px) scale(1.03)}
+  50%{transform:translate(-10px,10px) scale(1.05)}
+  75%{transform:translate(10px,10px) scale(1.03)}
+  100%{transform:translate(0,0) scale(1)}
 }
 
 /* Blur overlay */
-#blurOverlay{
-  position:fixed;
+#blurOverlay {
+  position: fixed;
   inset:0;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(8px);
-  z-index:20;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  z-index: 20;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -55,181 +45,142 @@ html,body{
   color:#fff;
   cursor:pointer;
   text-align:center;
-  transition:opacity 1.5s ease;
-  -webkit-tap-highlight-color: transparent;
+  transition: opacity 1.5s ease;
 }
 
-/* Ana içerik */
-.wrap{
-  width:100%;
-  max-width:760px;
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
-  background:rgba(0,0,0,0.35);
-  backdrop-filter:blur(6px);
-  box-shadow:0 6px 30px rgba(0,0,0,0.6);
-  z-index:5;
-}
-.hero{
-  padding:28px 22px 18px;
-  display:grid;
-  grid-template-columns:96px 1fr;
-  gap:18px;
-  align-items:center;
-  animation:fadeUp 1s ease forwards;
-  opacity:0;
-  transform:translateY(20px);
-}
+/* İçerik */
+.wrap{width:100%;max-width:760px;border-radius:18px;overflow:hidden;position:relative;background:rgba(20,20,20,0.5);backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6);}
+.hero{position:relative;padding:28px 22px 18px 22px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;animation:fadeUp 1s ease forwards;opacity:0;transform:translateY(20px);}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.avatar{
-  width:96px;height:96px;
-  border-radius:50%;
-  background:url('assets/ahmet.png') center/cover;
-  border:3px solid rgba(255,255,255,0.06);
-}
-.title{font-weight:800;font-size:22px}
+.avatar{width:96px;height:96px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,0.06);}
+.title{font-weight:800;font-size:22px;margin:0}
 .sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px}
-.controls{margin-top:10px}
-.small{font-size:13px;color:#1e3a8a;font-weight:600}
-.links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.05)}
-.link{
-  text-decoration:none;
-  padding:14px 16px;
-  border-radius:12px;
-  margin:8px 0;
-  background:var(--card);
-  color:#fff;
-  font-weight:600;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  transition:transform .2s,background .2s
-}
+.controls{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:10px}
+.links{display:flex;flex-direction:column;padding:18px;border-top:1px solid rgba(255,255,255,0.03)}
+.link{display:block;text-decoration:none;padding:14px 16px;border-radius:12px;margin:8px 0;background:var(--card);color:#fff;font-weight:600;transition:transform 0.2s, background 0.2s}
 .link:hover{transform:scale(1.03);background:rgba(255,255,255,0.1)}
+.small{font-size:13px;color:#0044ff;font-weight:600}
 
-/* Rozetler */
-.sub strong{color:#800000}
+@media (max-width:420px){.hero{grid-template-columns:72px 1fr}.avatar{width:72px;height:72px}}
 
 /* Ses kontrol */
-#audioControl{
-  position:fixed;
-  top:20px;left:20px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:rgba(0,0,0,0.4);
-  padding:6px 10px;
-  border-radius:12px;
-  cursor:pointer;
+#audioControl {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 10px;
+  border-radius: 12px;
+  cursor: pointer;
   z-index:10;
 }
-#volumeSlider{width:0;transition:width .3s ease}
-#audioControl:hover #volumeSlider{width:100px}
-#volumeIcon{width:24px;height:24px}
+#volumeSlider {width:0; transition: width 0.3s ease;}
+#audioControl:hover #volumeSlider {width:100px;}
+#volumeIcon {width:24px;height:24px;}
 
-/* Sayaç kutusu */
-#visitorBox{
-  position:fixed;
-  top:20px;right:20px;
-  background:rgba(0,0,0,0.45);
-  backdrop-filter:blur(6px);
-  border-radius:12px;
-  padding:6px 10px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  z-index:10;
-  font-size:14px;
-  color:#fff;
+/* Sayaç */
+#visitorBox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  z-index: 10;
 }
-#visitorBox img{width:18px;height:18px;opacity:.9}
-
-footer{text-align:center;padding:18px;font-size:13px;color:#FFD700}
+#visitorBox img {width: 20px; height: 20px;}
+#visitorCount {font-weight:600;}
 </style>
 </head>
 <body>
-<div class="bg-img"></div>
+<!-- Arka plan -->
+<div id="bg" class="bg-img" style="background-image:url('assets/ahmet2.png')"></div>
 
+<!-- Blur overlay -->
 <div id="blurOverlay">Ekrana tıkla, Paşam</div>
 
 <div class="wrap">
   <div class="hero">
-    <div class="avatar"></div>
+    <div class="avatar" id="avatar" style="background-image:url('assets/ahmet.png')"></div>
     <div>
-      <h1 class="title">Ahmet Tanriverdi</h1>
-      <div class="sub">
-        <strong>LOL:</strong> 102 saat / 
-        <strong>Roblox:</strong> 207 saat / 
-        <strong>Counter:</strong> 267 saat
+      <h1 class="title" id="name">Ahmet Tanriverdi</h1>
+      <div class="sub" id="desc">
+        LOL: 102 saat / Roblox: 207 saat / Counter: 267 saat
       </div>
       <div class="controls">
         <span class="small">Ben olabilirmisin, Mari??</span>
       </div>
     </div>
   </div>
-
-  <div class="links">
-    <a class="link" href="https://www.instagram.com/ahmet.tanriverdiii" target="_blank">
-      <img src="https://img.icons8.com/ios-glyphs/30/ffffff/instagram-new.png"/> ahmet.tanriverdiii
-    </a>
-    <a class="link" href="https://www.instagram.com/ahmet.tn7" target="_blank">
-      <img src="https://img.icons8.com/ios-glyphs/30/ffffff/instagram-new.png"/> ahmet.tn7
-    </a>
-    <a class="link" href="https://x.com/AhmetUt65114282" target="_blank">
-      <img src="https://img.icons8.com/ios-glyphs/30/ffffff/twitterx.png"/> couple06
-    </a>
-    <a class="link" href="https://open.spotify.com/user/3ctawmw87ddsl1kj74agvldaa" target="_blank">
-      <img src="https://img.icons8.com/ios-glyphs/30/ffffff/spotify.png"/> Spotify
-    </a>
+  <div class="links" id="links">
+    <a class="link" href="https://www.instagram.com/ahmet.tanriverdiii" target="_blank">📸 Instagram: ahmet.tanriverdiii</a>
+    <a class="link" href="https://www.instagram.com/ahmet.tn7" target="_blank">📸 Instagram: ahmet.tn7</a>
+    <a class="link" href="https://x.com/AhmetUt65114282" target="_blank">𝕏 Twitter: couple06</a>
+    <a class="link" href="https://open.spotify.com/user/3ctawmw87ddsl1kj74agvldaa" target="_blank">🎵 Spotify</a>
+  </div>
+  <div style="padding:18px;text-align:center">
+    <div class="small" style="color:gold">© 2025 — Ahmet Tanriverdi</div>
   </div>
 
-  <footer>© 2025 — <span style="color:#FFD700;">Ahmet Tanriverdi</span></footer>
-
+  <!-- Müzik -->
   <audio id="player" src="assets/amo-aller-amos.mp3" preload="auto" loop></audio>
 </div>
 
+<!-- Ses kontrol -->
 <div id="audioControl">
   <img src="https://img.icons8.com/ios-glyphs/30/ffffff/speaker.png" id="volumeIcon"/>
   <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
 </div>
 
+<!-- Ziyaretçi kutusu -->
 <div id="visitorBox">
   <img src="https://img.icons8.com/ios-glyphs/30/ffffff/visible.png"/>
   <span id="visitorCount">101</span>
 </div>
 
 <script>
-// Ses kontrol
-const player=document.getElementById('player');
-const volumeSlider=document.getElementById('volumeSlider');
-const blurOverlay=document.getElementById('blurOverlay');
-volumeSlider.addEventListener('input',()=>player.volume=volumeSlider.value);
+const player = document.getElementById('player');
+const volumeSlider = document.getElementById('volumeSlider');
+const blurOverlay = document.getElementById('blurOverlay');
+const countEl = document.getElementById("visitorCount");
 
-// Sayaç
-const visitorCountEl=document.getElementById('visitorCount');
-const hasVisited=localStorage.getItem('visitedAhmet');
-if(!hasVisited){
-  let count=parseInt(localStorage.getItem('visitorCount')||'100');
-  count++;
-  localStorage.setItem('visitorCount',count);
-  visitorCountEl.textContent=count;
-  localStorage.setItem('visitedAhmet','true');
-}else{
-  visitorCountEl.textContent=localStorage.getItem('visitorCount')||'100';
-}
+// Ses slider
+volumeSlider.addEventListener('input', () => { player.volume = volumeSlider.value; });
 
-// Blur overlay
-blurOverlay.addEventListener('click',()=>{
+// Blur overlay tıklama
+blurOverlay.addEventListener('click', () => {
   blurOverlay.style.opacity='0';
   setTimeout(()=>{blurOverlay.style.display='none';},1500);
-  player.volume=0;
+
+  // Müzik fade-in
+  player.volume = 0;
   player.play();
-  let v=0;
-  const fade=setInterval(()=>{
-    if(v<1){v+=0.02;player.volume=v;}
-    else clearInterval(fade);
+  let vol = 0;
+  const fadeInterval = setInterval(()=>{
+    if(vol<1){ vol+=0.02; if(vol>1) vol=1; player.volume=vol; } 
+    else { clearInterval(fadeInterval); }
   },30);
+
+  // Ekrana tıklayan kişi sayacı
+  if (!localStorage.getItem("clickedOnce")) {
+    localStorage.setItem("clickedOnce", "true");
+    fetch("https://api.countapi.xyz/hit/ahmettanriverdi-clicks/total")
+      .then(res => res.json())
+      .then(data => { countEl.innerText = 100 + data.value; })
+      .catch(err => console.log("Sayaç hatası:", err));
+  } else {
+    fetch("https://api.countapi.xyz/get/ahmettanriverdi-clicks/total")
+      .then(res => res.json())
+      .then(data => { countEl.innerText = 100 + data.value; });
+  }
 });
 </script>
 </body>
